@@ -50,6 +50,7 @@ body {
     padding: 0px;
 }
 
+
 .header {
     height: 80px;
     background-color: #111;
@@ -62,7 +63,7 @@ body {
     position: fixed;
     text-align: left;
     display: flex;
-    width: 100%;
+    width: 100vw;
     z-index: 3000000;
     letter-spacing: 0.01em;
 }
@@ -206,6 +207,12 @@ a {
     border-radius: 6.4px;
 }
 
+.no-hover p {
+    background: none !important;
+    border-radius: 0 !important;
+}
+
+
 .text-tieu-de:hover .gach-duoi-mau-xanh {
     opacity: 1;
 }
@@ -220,7 +227,7 @@ a {
     padding: 0;
     flex-direction: column;
     justify-content: center;
-    height: 66px;
+    /* height: 66px; */
     font-size: 13px;
     font-weight: 600;
     line-height: 120%;
@@ -235,6 +242,7 @@ a {
 .text-color-c7c7c7 {
     color: #c7c7c7;
 }
+
 .text-tieu-de a .dau-mui-ten-cheo svg {
     width: 12px;
     height: 12px;
@@ -296,6 +304,10 @@ a {
     fill: #f9f9f9;
 }
 
+.no-hover svg path {
+    fill: #c7c7c7;
+}
+
 .list-style-none {
     list-style: none;
 }
@@ -349,6 +361,14 @@ a {
 .text-hover:hover {
     background: rgba(128, 128, 128, .3);
     border-radius: 6.4px;
+}
+
+.text-in-submenu-news:hover {
+    color: #f9f9f9
+}
+
+.text-in-submenu-news:hover svg path {
+    fill: #f9f9f9;
 }
 
 .text-hover .text-in-submenu-news svg {
@@ -520,7 +540,6 @@ a {
     position: absolute;
     right: 0px;
     transition: opacity 0.75s linear;
-    opacity: 0;
     visibility: hidden;
     transform: translate(0%, -29%);
     display: block;
@@ -761,15 +780,7 @@ section {
     opacity: 1;
 }
 
-.canh-chinh-khoi-tin-tuc {
-    margin: 32px 0;
-    overflow: hidden;
-    cursor: auto;
-    width: 100%;
-    height: 100%;
-}
-
-.vi-tri-cac-khoi-tintuc {
+/* .vi-tri-cac-khoi-tintuc {
     position: relative;
     display: flex;
     gap: 32px; 
@@ -777,17 +788,33 @@ section {
     justify-content: space-between; 
     margin: 0;
     padding: 0;
+    transition: transform 0.25s ease-in-out;
+} */
+
+.position-news {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.3s ease;
 }
 
-.vi-tri-cac-khoi-tintuc .card {
+/* .vi-tri-cac-khoi-tintuc .card {
     flex: 1 1 calc(33.33% - 32px); 
     max-width: calc(33.33% - 32px); 
     box-sizing: border-box;
+} */
+
+.so-luong-card {
+    --soLuongCard: 3;
+    --khoangCachGiuaCard: 24px;
+    --soLuongKhoangTrong: calc(var(--soLuongCard) - 1);
+    min-width: calc((100% - (var(--khoangCachGiuaCard) * var(--soLuongKhoangTrong))) / var(--soLuongCard));
+    transition: transform 0.3s ease;
 }
 
-.vi-tri-cac-khoi-tintuc .card:last-child {
+/* .vi-tri-cac-khoi-tintuc .card:last-child {
     margin-right: 0;
-}
+    visibility: initial;
+} */
 
 img, video {
     border: none;
@@ -802,6 +829,7 @@ img, video {
     align-items: flex-start;
     gap: 32px;
     flex-wrap: wrap;
+    /* overflow: hidden; */
 }
 
 .margin-topbot-32 {
@@ -818,10 +846,10 @@ img, video {
 
 .card {
     display: inline-block;
-    width: 480px;
+    /* width: 480px; */
     overflow: hidden;
     text-align: left;
-    max-width: calc(33.33% - 32px);
+    /* max-width: calc(33.33% - 24px); */
     box-sizing: border-box;
     position: relative;
     margin-bottom: 32px;
@@ -833,6 +861,7 @@ img, video {
     object-fit: cover;
     display: block;
 }
+
 .image-card-1 {
     overflow: hidden;
     position: relative;
@@ -951,6 +980,7 @@ img, video {
     gap: 16px;
     display: flex;
     justify-content: flex-end;
+    opacity: 0;
 }
 
 .duong-ke-thanh-truot {
@@ -1007,7 +1037,7 @@ button, input, optgroup, select, textarea {
 }
 
 .trigger-previous .color-trigger {
-    background-color: rgb(200, 170, 110);
+    background-color: #ced0d4;
 }
 
 .icon-trigger-previous {
@@ -1238,6 +1268,13 @@ button, input, optgroup, select, textarea {
     margin-bottom: -2px;
 }
 
+.icon-tab-tabs-tuong {
+    overflow: hidden;
+    cursor: auto;
+    width: 100%;
+    height: 100%;
+}
+
 .list-icon-tuong {
     --Khoang-cach-giua-icon: 8px;
     display: flex;
@@ -1252,7 +1289,7 @@ button, input, optgroup, select, textarea {
 .icon-thu-nhat {
     --so-luong-icon-xuat-hien-cung-luc: 6;
     --so-khoang-trong-giua-cac-icon: calc(var(--so-luong-icon-xuat-hien-cung-luc) - 1);
-    --khoang-cach-giua-cac-icon: calc(((100% -(var(--Khoang-cach-giua-icon)* var(--so-khoang-trong-giua-cac-icon))) / (1 * var(--so-luong-icon-xuat-hien-cung-luc))));
+    --carousel-width: calc(((100% -(var(--Khoang-cach-giua-icon)* var(--so-khoang-trong-giua-cac-icon))) /(1* var(--so-luong-icon-xuat-hien-cung-luc))));
     min-width: var(--khoang-cach-giua-cac-icon);
     transition: transform 0.3s ease;
 }
@@ -1325,11 +1362,11 @@ button, input, optgroup, select, textarea {
     text-align: center;
 }
 
-
 .icon-tab-label#list-map {
     color: #fff;
 }
-ol.can-cac-icon {
+
+ol.can-cac-icon#ds-map {
     display: flex;
     justify-content: space-between;
     /* justify-content: center; */
@@ -1586,7 +1623,7 @@ ol.list-icon-tuong.horizontal li {
     font-family: 'Spiegel', sans-serif;
     font-weight: 400;
     word-break: break-word;
-    font-size: 18px;
+    /* font-size: 18px; */
     line-height: 26px;
     color: #fff;
 }
@@ -1945,6 +1982,365 @@ ol.list-icon-tuong.horizontal li {
     display: block;
     max-width: 100%;
 }
+
+/* List language */
+.locale-switcher-language {
+    position: absolute;
+    top: 60px;
+    left: -107px;
+    padding: 8px 0 8px 8px;
+    display: none;
+}
+
+.locale-switcher-language .lang-switch-caret {
+    height: 0;
+    position: absolute;
+    width: 0;
+    left: 113px;
+    top: -12px;
+    border: 10px solid rgba(0, 0, 0, 0);
+    border-bottom-color: #f9f9f9;
+}
+
+.locale-switcher-language .locale-list {
+    font-family: "FF Mark W05", Arial, sans-serif;
+    display: block;
+    width: 240px;
+    background-color: #fcfcfc;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 12px;
+    max-height: 360px;
+    overflow-x: auto;
+    padding: 8px 0 8px 8px;
+}
+
+.locale-switcher-language .locale-list li {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.locale-switcher-language .locale-list li a {
+    transition: color 0.3s linear;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #999;
+    width: 100%;
+    padding: 0 0 0 20px;
+}
+
+.lang-name {
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.active-language a span {
+    color: #c4202b;
+}
+
+.active-language a svg {
+    position: absolute;
+    top: 35%;
+    right: 20px;
+    width: 14px;
+    height: 12px;
+    fill: #c4202b;
+}
+.lang-name:hover {
+    color: #000;
+}
+
+/* menu ở màn hình tablet và mobile */
+.mobile-menu {
+    background: #1f1f1f;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+    height: 100%;
+    text-align: left;
+    transform: translateY(-5%);
+    top: 0px;
+    right: 0;
+    width: 484px;
+    z-index: 10;
+    transition: transform 300ms, opacity 300ms;
+}
+
+.visible {
+    visibility: hidden;
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+.mobile-menu-header {
+    height: 80px;
+    background: #1f1f1f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+
+.mobile-menu-header-logo {
+    color: #f9f9f9;
+    margin: 0;
+    display: block;
+    max-height: 40px;
+}
+
+.mobile-menu-header-logo svg {
+    height: 40px;
+}
+
+.mobile-menu-close {
+    width: 48px;
+    height: 48px;
+}
+
+.mobile-menu-close svg {
+    width: 48px;
+    height: 48px;
+}
+
+.mobile-menu-search {
+    width: 100%;
+    transition: opacity 0.2 linear;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 16px 0;
+}
+
+.mobile-menu-search-div {
+    display: flex;
+    background-color: #2b2a29;
+    border-radius: 1.6rem;
+    padding: 10px 0;
+}
+
+.mobile-menu-search-div-icon {
+    position: absolute;
+    left: 30px;
+}
+
+.mobile-menu-search-div-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #f9f9f9;
+}
+
+.mobile-menu-search-div input {
+    background-color: transparent;
+    padding: 0;
+    margin: -8px 10px;
+    border-style: hidden;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    transition: width ease 1s;
+    text-indent: 42px;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    color: #f9f9f9;
+}
+
+.mobile-menu-search-cancel {
+    position: absolute;
+    right: 10px;
+    transform: translate(0%, -29%);
+    display: block;
+}
+
+.mobile-menu-search-cancel svg {
+    width: 60px;
+}
+
+.input-2 {
+    width: 0;
+    border: 0;
+    padding: 0;
+}
+
+.mobile-menu-touchpoints {
+    transition: opacity 0.2 linear;
+    padding-top: 7px;
+}
+
+.mobile-menu-touchpoints .mobile-menu-touchpoint {
+    overflow: visible;
+    position: relative;
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a.mobile-menu-link {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    height: 48px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin: 8px 16px;
+    text-transform: uppercase;
+    transition: color 1s cubic-bezier(0.06, 0.81, 0, 0.98);
+    cursor: pointer;
+    color: #f9f9f9;
+    border-radius: 6.4px;
+}
+
+.mobile-menu a {
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+a.mobile-menu-link:first-child {
+    margin-top: 0;
+}
+
+.mobile-menu-icon-arrow {
+    width: 28px;
+    height: 14px;
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+
+.mobile-menu-icon-arrow svg {
+    display: block;
+    fill: #737373;
+    width: 28px;
+    height: 14px;
+}
+
+.mobile-menu-icon-link {
+    width: 28px;
+    height: 14px;
+}
+
+.mobile-menu-icon-link svg {
+    display: block;
+    fill: #737373;
+    width: 28px;
+    height: 14px;
+}
+
+.mobile-menu-playnow {
+    width: 100%;
+    transition: opacity 0.2 linear;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.mobile-menu-playnow .mobile-menu-playnow-link {
+    cursor: pointer;
+    display: block;
+    transition: color 1s cubic-bezier(0.06, 0.81, 0, 0.98);
+    color: #fcfcfc;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: rgba(128, 128, 128, 0.2);
+    padding: 8px 16px;
+    border-radius:  6.4px;
+    letter-spacing: 0.08em;
+    line-height: 120%;
+    text-align: center;
+    height: 48px;
+}
+.mobile-menu-playnow .mobile-menu-playnow-link.playnow-theme-button {
+    text-align: center;
+    line-height: 120%;
+    position: relative;
+    z-index: 0;
+    text-overflow: ellipsis;
+    height: 48px;
+    border-radius: 12px;
+    padding: 8px 16px;
+    color: #111;
+    margin-top: 12px;
+}
+
+.mobile-menu-playnow .mobile-menu-playnow-text {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-menu-sublink {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 48px;
+    margin: 8px 16px;
+    overflow: hidden;
+    border-radius: 6.4px;
+    display: none;
+}
+
+.open-menu-sublink {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 48px;
+    margin: 8px 16px;
+    overflow: hidden;
+    border-radius: 6.4px;
+    display: none;
+}
+
+p.mobile-menu-sublink-text {
+    padding: 8px 0;
+    color: #c7c7c7;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0em;
+    text-align: left;
+    text-transform: uppercase;
+}
+/* hover */
+.mobile-menu-touchpoint .mobile-menu-link:hover {
+    background: rgba(128, 128, 128, .3);
+    color: rgb(200, 170, 110);
+}
+.mobile-menu-touchpoint .mobile-menu-sublink:hover {
+    background: rgba(128, 128, 128, .3);
+}
+
+.open-menu-sublink:hover {
+    background: rgba(128, 128, 128, .3);
+}
+.open-menu-sublink:hover p.mobile-menu-sublink-text {
+    color: #f9f9f9;
+}
+
+.mobile-menu-touchpoint .mobile-menu-sublink:hover p.mobile-menu-sublink-text {
+    color: #f9f9f9;
+}
+
+.mobile-menu-playnow:hover .mobile-menu-playnow-link {
+    background: rgb(0, 178, 207) !important;
+}
+
 /* Desktop */
 @media only screen and (min-width: 1023px) {
     .vi-tri-cac-khoi-tintuc .card {
@@ -1964,12 +2360,20 @@ ol.list-icon-tuong.horizontal li {
 
 /* Mobile */
 @media only screen and (max-width: 600px) {
-    .container-tin-tuc .vi-tri-cac-khoi-tintuc .card {
+    /* .container-tin-tuc .vi-tri-cac-khoi-tintuc .card {
         max-width: 100%; 
         flex: 1 1 100%; 
         width: auto; 
     }
     .vi-tri-cac-khoi-tintuc .card:nth-child(n + 2) {
+        display: none;
+    } */
+
+    .vi-tri-cac-khoi-tintuc .so-luong-card {
+        --soLuongCard: 1;
+    }
+
+    .tieu-de-cac-chu:nth-child(n) {
         display: none;
     }
 
@@ -2007,18 +2411,137 @@ ol.list-icon-tuong.horizontal li {
         font-size: 14px;
         line-height: 22px;
     }
+
+    .khoi-thanh-truot-tin-tuc {
+        opacity: 1;
+    }
+
+    .div-PLAYNOW, .div-search {
+        display: none;
+    }
+
+    .WORLD svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .button-world {
+        padding-right: 16px;
+    }
+    
+    .button-detail-PLAYNOW {
+        display: block;
+        visibility: visible;
+        height: 48px;
+        width: 48px;
+        cursor: pointer;
+    }
+    .footer-links-header ul {
+        flex-direction: column;
+    }
+
+    .footer-links-header ul li {
+        margin: 12px 0;
+    }
+
+    .legal-links ul {
+        flex-direction: column;
+    }
+
+    .legal-links ul li {
+        margin: 12px 0;
+    }
+
+    .social-links ul li {
+        width: 48px;
+        height: 48px;
+    }
+
+    .social-links ul li a svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .riotbar-text {
+        max-width: 390px;
+    }
+
+    .logo-LMHT .logo-LMHT-1 {
+        display: none;
+    }
+
+    .logo-LMHT .logo-LMHT-2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: auto;
+    }
+
+    .logo-riot-games {
+        transform: scale(1.1);
+    }
+
+    .riot-block {
+        padding-left: 26px;
+    }
+
+    .icon-tab-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: "tabs" "media";
+    }
+
+    .main-container {
+        display: block;
+    }
+
+    .media-container {
+        min-width: 100%;    
+    }
+
+    .content-container {
+        min-width: 100%;
+    }
+
+    .content-container .supertitle {
+        margin-bottom: 8px;
+    }
+    .content-container .title {
+        font-size: 64px;
+        line-height: 72px;
+        margin-bottom: 16px;
+    }
+
+    .container-qc-tuong .links a {
+        width: 100%;
+    }
+
+    .richText#richText1 p {
+        font-size: 13px;
+        line-height: 22px;
+        margin: 16px 0;
+    }
+    .mobile-menu {
+        width: 100%;
+        overflow-x: auto;
+    }
 }
 
 /* Tablet */
-@media only screen and (max-width: 1024px) {
-    .vi-tri-cac-khoi-tintuc .card {
+@media only screen and (max-width: 1024px) and (min-width: 601px) {
+    /* .vi-tri-cac-khoi-tintuc .card {
         max-width: calc(50% - 32px);
         flex: 1 1 calc(50% - 32px);
         width: auto; 
     }
 
-    .vi-tri-cac-khoi-tintuc .card:nth-child(n + 3) {
-        display: none;
+    .vi-tri-cac-khoi-tintuc .card:last-child {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+    } */
+
+    .vi-tri-cac-khoi-tintuc .so-luong-card {
+        --soLuongCard: 2;
     }
 
     .tieu-de-cac-chu:nth-child(n) {
@@ -2052,6 +2575,7 @@ ol.list-icon-tuong.horizontal li {
     .logo-chu-LMHT, .nut-play-1 {
         transform: scale(0.95);
     }
+
     .icon-tab-container {
         grid-template-columns: 1fr;
         grid-template-areas: "tabs" "media";
@@ -2096,5 +2620,40 @@ ol.list-icon-tuong.horizontal li {
 
     .legal-links ul li {
         margin: 12px 0;
+    }
+
+    .social-links ul li {
+        width: 48px;
+        height: 48px;
+    }
+
+    .social-links ul li a svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .khoi-thanh-truot-tin-tuc {
+        opacity: 1;
+    }
+
+    .div-PLAYNOW, .div-search {
+        display: none;
+    }
+
+    .WORLD svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .button-world {
+        padding-right: 16px;
+    }
+    
+    .button-detail-PLAYNOW {
+        display: block;
+        visibility: visible;
+        height: 48px;
+        width: 48px;
+        cursor: pointer;
     }
 }
